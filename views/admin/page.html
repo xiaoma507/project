@@ -1,0 +1,30 @@
+{%if users%}
+<nav>
+	<ul class="pager">
+		<li class="previous"><a class="btn btn-default" href="/admin/user?page={{page-1}}"> 上一页</a></li>
+		<li>一共有{{count}}条数据，每页显示{{limit}}条数据，共{{pages}}页，当前第{{page}}页</li>
+		<li class="next"><a  class="btn btn-default" href="/admin/user?page={{page+1}}">下一页 </a></li>
+	</ul>
+</nav>
+{%endif%}
+
+{%if categories%}
+<nav>
+	<ul class="pager">
+		<li class="previous"><a class="btn btn-default" href="/admin/category?page={{page-1}}"> 上一页</a></li>
+		<li>一共有{{count}}条数据，每页显示{{limit}}条数据，共{{pages}}页，当前第{{page}}页</li>
+		<li class="next"><a  class="btn btn-default" href="/admin/category?page={{page+1}}">下一页 </a></li>
+	</ul>
+</nav>
+{%endif%}
+
+{%if contents%}
+<nav>
+	<ul class="pager">
+		<li class="previous"><a class="btn btn-default" href="/admin/content?page={{page-1}}"> 上一页</a></li>
+		<li>一共有{{count}}条数据，每页显示{{limit}}条数据，共{{pages}}页，当前第{{page}}页</li>
+		<li class="next"><a  class="btn btn-default" href="/admin/content?page={{page+1}}">下一页 </a></li>
+	</ul>
+</nav>
+{%endif%}
+

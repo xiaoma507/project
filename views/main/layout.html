@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>这是我的第一个博客</title>
+	<link href="/public/css/main.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="/public/js/jquery.js"></script>
+
+</head>
+<body>
+<div class="wrap">
+	<div class="header">
+		<h1>网站建设</h1>
+		<h3>专业建站，品质交付零风险</h3>
+		<p>*无地域限制，以下商家均可承接全国需求</p>
+	</div>
+	<div class="menu ">
+		<ul class=" com-w">
+			{%if category==''%}
+			<li><a href="/" class="active">首页</a></li>
+			{%else%}
+			<li><a href="/">首页</a></li>
+			{%endif%}
+
+			{% for cate in categories %}
+
+			{%if category==cate.id%}
+			<li><a class="active" href="/?category={{cate.id}}">{{cate.name}}</a></li>
+			{%else%}
+			<li><a href="/?category={{cate.id}}">{{cate.name}}</a></li>
+			{%endif%}
+
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="container">
+		<div class="com-w cont-wrap">
+			{%block content%}{%endblock%}
+			<div class="rightcont mt20">
+				{% if userInfo._id %}
+				<div class="cont  pb20 " id="successlogin">
+					<h3>用户</h3>
+					<p class="mt10 ml25"><span class="blue ">{{userInfo.username}}</span></p>
+					{% if userInfo.isAdmin %}
+					<p class="mt10 ml25">
+						<span>你好，管理员</span> <a href="/admin">登录管理系统</a>
+					</p>
+					{% else %}
+					<p class="mt10 ml25"><span>你好，欢迎光临我的博客</span></p>
+					{%endif%}
+					<p class="mt10 ml25"><a id="loginout" id href="javascript:;">注销</a></p>
+				</div>
+				{% else %}
+				<div class="cont" id="login">
+					<h3>登录</h3>
+					<div class="login mt10">
+						<p><span>用户名:</span><input class="username" name="username" type="text"></p>
+						<p><span>密码:</span><input class="password" name="password" type="password"></p>
+						<p><input class="subbtn" type="submit" value="登录"></p>
+					</div>
+					<p class="right">还没有注册？<a class="register" href="javascript:;">马上注册</a></p>
+					<p class="success"></p>
+				</div>
+
+				<div class="cont" id="register" style="display: none">
+					<h3>注册</h3>
+					<div class="register mt10">
+						<p><span>用户名:</span><input class="username" name="username" type="text"></p>
+						<p><span>密码:</span><input class="password" name="password" type="password"></p>
+						<p><span>确认密码:</span><input class="repassword" name="repassword" type="password"></p>
+						<p><input class="subbtn" type="submit" value="注册"></p>
+						<p class="right">已有账号？<a href="javascript:;" class="login">登录</a></p>
+						<p class="success"></p>
+					</div>
+				</div>
+				{%endif%}
+
+				<div class="sq">
+					<ul>
+						<li><a href="/">nodejs社区</a></li>
+						<li><a href="/">vuejs社区</a></li>
+						<li><a href="/">mongoose社区</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer mt20">
+		<div class="com-w foot">
+			<p>版权所有 2017-2020</p>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="/public/js/index.js"></script>
+</body>
+</html>

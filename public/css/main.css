@@ -1,0 +1,392 @@
+/*
+css
+*/
+* {
+	margin: 0;
+	padding: 0
+}
+
+ul, li {
+	list-style: none
+}
+
+body {
+	font-family: "微软雅黑";
+	font-size: 12px;
+	background: #ccc;
+}
+
+input {
+	outline: none
+}
+
+img {
+	border: none
+}
+
+a {
+	color: #0f0f0f;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/*a:visited {
+	color: #00FF00;
+}*/
+
+a:hover {
+	color: #FF00FF;
+}
+
+a:active {
+	color: #0000FF;
+}
+
+.com-w {
+	width: 1200px;
+	margin: 0 auto
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden
+}
+
+.clear {
+	clear: both;
+	height: 0;
+	overflow: hidden;
+}
+
+.mt20 {
+	margin-top: 20px
+}
+
+.pb20 {
+	padding-bottom: 20px !important;
+}
+
+.mt10 {
+	margin-top: 10px
+}
+
+.ml25 {
+	margin-left: 25px;
+}
+
+.fl {
+	float: left;
+}
+
+.fr {
+	float: right;
+}
+
+.blue {
+	color: #0000FF;
+}
+
+.wrap, .footer {
+	width: 100%;
+	height: auto;
+	overflow: hidden
+}
+
+.header {
+	background: url("/public/img/banner.jpg") no-repeat;
+	height: 368px;
+	position: relative
+}
+
+.header h1 {
+	color: white;
+	position: absolute;
+	left: 20%;
+	top: 20%
+}
+
+.header h3 {
+	color: white;
+	position: absolute;
+	left: 20%;
+	top: 40%
+}
+
+.header p {
+	color: white;
+	position: absolute;
+	left: 20%;
+	top: 60%
+}
+
+.menu {
+	overflow: hidden;
+	height: 40px;
+	line-height: 40px;
+	background: #fff;
+}
+
+.menu ul {
+	display: flex
+}
+
+.menu ul li {
+	flex: 1;
+	text-align: center
+}
+
+.menu ul li a {
+	padding-bottom: 2px
+}
+
+.menu ul li a:hover {
+	border-bottom: solid 1px red;
+}
+
+.container {
+	background: #ccc
+}
+
+.container .cont-wrap {
+	overflow: hidden;
+	display: flex;
+}
+
+.leftcont {
+	width: 880px;
+	flex: 880px;
+	margin-right: 20px;
+}
+
+.leftcont .cont {
+	margin-top: 20px;
+	background: #ffffff;
+	padding: 20px
+}
+
+.leftcont .cont h1 {
+	text-align: center
+}
+
+.leftcont .cont div {
+	text-align: center
+}
+
+.leftcont .cont div em {
+	color: #0000FF;
+	padding: 5px
+}
+
+.leftcont .cont p {
+	line-height: 30px
+}
+
+.leftcont .cont .btn {
+	display: block;
+	width: 100px;
+	height: 30px;
+	padding: 10px auto;
+	background: yellow;
+	border: solid 1px #ccc;
+	border-radius: 10px;
+	text-align: center;
+	line-height: 30px
+}
+
+.rightcont {
+	width: 300px;
+	flex: 300px;
+}
+
+.rightcont .login p, .rightcont .register p {
+	margin: 0 auto;
+}
+
+.rightcont .login p span, .rightcont .register p span {
+	display: inline-block;
+	width: 63px;
+	height: 30px;
+	text-align: right;
+	padding-right: 5px
+}
+
+.rightcont h3 {
+	width: 50px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 25px;
+	border-bottom: solid 1px orangered;
+}
+
+.rightcont .cont {
+	overflow: hidden;
+	background: #ffffff;
+}
+
+.rightcont .cont .right {
+	text-align: right;
+	padding-right: 80px;
+}
+
+.rightcont .cont .right a {
+	padding: 5px;
+}
+
+.subbtn {
+	width: 153px;
+	height: 20px;
+	margin-left: 68px;
+	margin-bottom: 20px;
+	display: block;
+	background: yellow;
+	text-align: center;
+	line-height: 20px;
+	border: solid 1px #ccc;
+	cursor: pointer;
+}
+
+.footer {
+	height: 50px;
+	background: #000;
+	line-height: 50px;
+	text-align: center;
+	color: white;
+}
+
+.success {
+	padding-bottom: 10px;
+	text-align: center;
+	padding-top: 10px;
+	color: darkgreen;
+}
+
+.page {
+	margin-top: 20px;
+	width: 100%;
+	background: white;
+}
+
+.page ul {
+	display: flex
+}
+
+.page ul li {
+	flex: 1;
+	height: 50px;
+	line-height: 50px;
+	background: white;
+}
+
+.next, .prev {
+	font-weight: bold;
+}
+
+.next {
+	text-align: right;
+	padding-right: 10px
+}
+
+.prev {
+	text-align: left;
+	padding-left: 10px
+}
+
+.center {
+	text-align: center
+}
+
+.sq {
+	background: white;
+	margin-top: 20px;
+	padding: 20px;
+
+}
+
+.sq ul li {
+	line-height: 30px
+}
+
+.sq ul li a {
+	color: #333;
+}
+
+.active {
+	border-bottom: solid 1px red;
+}
+
+.pl-input-inner {
+	background: white;
+	padding-bottom: 10px;
+}
+
+.pl-input-inner textarea {
+	display: block;
+	width: 842px;
+	min-height: 62px;
+	padding: 8px;
+	margin: 0 10px;
+	color: #555;
+	font-size: 14px;
+	resize: none;
+	line-height: 18px;
+	font-family: "Microsoft YaHei";
+}
+
+.pl-input-btm {
+	background: white;
+	overflow: hidden
+}
+
+.plwrap {
+	background: white;
+	overflow: hidden
+}
+
+.pltext {
+	border-top: solid 1px #999;
+	width: 860px;
+	margin: 0 auto;
+	padding: 10px 0
+}
+
+.pltext li {
+	line-height: 24px
+}
+
+.ts {
+	color: white;
+	line-height: 40px;
+	text-align: center;
+	background: orangered;
+	width: 860px;
+	margin: 0 auto 10px;
+
+}
+
+.course-warp {
+	width: 100%;
+	overflow: hidden;
+}
+
+.course {
+	margin-top: 20px;
+	background: white;
+	padding: 10px;
+	overflow: hidden;
+}
+
+.course-btn {
+	float: right;
+	padding: 10px;
+	background-color: #00b33b;
+	font: 14px/20px "微软雅黑", Tahoma, Arial, STHeiti, sans-serif;
+	text-align: center;
+	margin-right: 10px;
+	margin-bottom: 10px;
+	color: #fff;
+	cursor: pointer;
+	border-radius: 2px;
+}

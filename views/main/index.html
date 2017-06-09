@@ -1,0 +1,44 @@
+{%extends 'layout.html' %}
+{%block content%}
+<div class="leftcont">
+	{%for content in contents%}
+	<div class="cont">
+		<h1>{{content.title}}</h1>
+		<div class="mt10">
+			作者:<em>{{content.user.username}}</em>
+			时间:<em>{{content.addTime|date('Y年m月d日H:i:s',-8*60)}}</em>
+			阅读:<em>{{content.views}}</em>
+			评论:<em>10</em>
+		</div>
+		<p class="mt10">
+			{{content.description}}
+		</p>
+		<a class="btn mt10" href="/view?contentid={{content.id}}">阅读全文</a>
+	</div>
+	{%endfor%}
+	<div class="page">
+		<ul>
+			<li class="prev">
+				{%if page<=1%}
+				<a href="javascript:;">没有上一页</a>
+				{%else%}
+				<a href="/?category={{category}}&page={{page-1}}">上一页</a>
+				{%endif%}
+			</li>
+			{%if pages>0 %}
+			<li class="center">
+				<strong>{{page}}/{{pages}}</strong>
+			</li>
+			{%endif%}
+			<li class="next">
+				{%if page>=pages%}
+				<a href="javascript:;">没有下一页</a>
+				{%else%}
+				<a href="/?category={{category}}&page={{page+1}}">下一页</a>
+				{%endif%}
+			</li>
+		</ul>
+	</div>
+</div>
+
+{%endblock%}

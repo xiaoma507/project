@@ -1,0 +1,151 @@
+{%extends 'layout.html' %}
+{%block content%}
+<div class="leftcont">
+    <div class="cont">
+        <h1>{{content.title}}</h1>
+        <div class="mt10">
+            作者:<em>{{content.user.username}}</em>
+            时间:<em>{{content.addTime|date('Y年m月d日H:i:s',-8*60)}}</em>
+            阅读:<em>{{content.views}}</em>
+            评论:<em>10</em>
+        </div>
+        <p class="mt10">
+            {{content.content}}
+        </p>
+    </div>
+    <div class="course-warp">
+        <div class="course">
+            <span class="fl">发表评论</span>
+            <span class="fr"><strong>评论</strong><em>一共<span id="messageCount">10</span>条评论</em></span>
+        </div>
+        <div class="pl-input-wrap">
+                {%if username!=userInfo.username%}
+            <div class="pl-input-inner inner">
+                <textarea id="messageContent" placeholder="扯淡、吐槽、表扬、鼓励……想说啥就说啥！"></textarea>
+            </div>
+
+            <div class="pl-input-btm  inner">
+                <p><input type="button" class="course-btn" value="发表评论" id="messageBtn"></p>
+            </div>
+            {%else%}
+            <div class="pl-input-btm">
+                <p class="ts">要发表评论信息请先登录</p>
+            </div>
+            {%endif%}
+            <input type="hidden" id="contentId" value="{{content.id}}">
+        </div>
+
+        <div class="plwrap"></div>
+        <div class="pager page"></div>
+
+    </div>
+</div>
+<!--<script type="text/javascript" src="/public/js/comments.js"></script>-->
+<script type="text/javascript" src="/public/js/jquery.js"></script>
+<script>
+    /**
+     * Created by Administrator on 2017/5/13 0013.
+     */
+
+
+    var pages = 1;		//总的页数
+    var page = 1;		//当前页数
+    var prepage = 5;	//每页显示5条数据
+    var comments=[];
+    /*
+     * 提交评论
+     * */
+
+    $("#messageBtn").on('click', function () {
+        $.ajax({
+            type: 'post',
+            url: '/api/comment/post',
+            data: {
+                contentid: $("#contentId").val(),
+                content: $("#messageContent").val()
+            },
+            success: function (responseData) {
+                $("#messageContent").val("");
+                comments=responseData.data.comments.reverse();
+                renderComment();
+            }
+        })
+    })
+
+
+    $.ajax({
+        url: '/api/comment',
+        data: {
+            contentid: $("#contentId").val()
+        },
+        success: function (responseData) {
+            comments=responseData.data.reverse();
+            renderComment();
+        }
+    })
+
+
+    //渲染数据和分页处理
+    function renderComment() {
+        pages = Math.ceil(comments.length / prepage);
+        var star=Math.max(0,(page-1)*prepage);
+        var end=Math.min(star+prepage,comments.length);
+        var html = '';
+        var pagehtml = '';
+        for (var i = star; i < end; i++) {
+            var obj = comments[i].postTime;
+            var values = [];
+            for (var key in obj) {
+                if (obj.hasOwnProperty(key) === true) {
+                    values.push(obj[key]);
+                }
+            }
+            var v = formatDate(values.join(""));
+            html += `<ul class="pltext">
+                    <li><span> 评论者: </span>${comments[i].username}</li>
+                    <li><span> 内容: </span>${comments[i].content}</li>
+                    <li><span> 时间: </span>${v}</li>
+                </ul>`
+        }
+        $(".plwrap").html(html);
+        $("#messageCount").html(comments.length);
+
+        pagehtml += `<ul>
+                <li class="prev"></li>
+                <li class="center"><strong>${page}/${pages}</strong></li>
+                <li class="next"></li>
+            </ul>`
+        $(".pager").html(pagehtml);
+
+        var lis=$(".pager li");
+        if(page<=1){
+            page=1;
+            lis.eq(0).html('<span>没有上一页</span>' );
+        }else{
+            lis.eq(0).html('<a href="javascript:;">上一页</a>' );
+        }
+        if(page>=pages){
+            page=pages;
+            lis.eq(2).html('<span>没有下一页</span>' );
+        }else{
+            lis.eq(2).html('<a href="javascript:;">下一页</a>' );
+        }
+
+    }
+    $(".pager").delegate('a','click',function(){
+
+        if($(this).parent().hasClass('prev')){
+            page--;
+        }else {
+            page++;
+        }
+        renderComment();
+    })
+
+    //处理时间的格式的方法
+    function formatDate(d) {
+        var date = new Date(d);
+        return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+    }
+</script>
+{%endblock%}
